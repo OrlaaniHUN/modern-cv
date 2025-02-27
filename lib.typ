@@ -81,6 +81,8 @@
     #smallcaps[
       #if language == "zh" or language == "ja" [
         #author.firstname#author.lastname
+      ] else if language = "hu" [
+        #author.lastname#author.firstname
       ] else [
         #author.firstname#sym.space#author.lastname
       ]
@@ -105,6 +107,8 @@
     #smallcaps[
       #if language == "zh" or language == "ja" [
         #author.firstname#author.lastname
+      ] else if language = "hu" [
+        #author.lastname#author.firstname
       ] else [
         #author.firstname#sym.space#author.lastname
       ]
@@ -218,7 +222,7 @@
 
   show: body => context {
     set document(
-      author: author.firstname + " " + author.lastname,
+      author: author.lastname + " " + author.firstname,
       title: lflib._linguify("resume", lang: language, from: lang_data).ok,
     )
     body
@@ -303,6 +307,11 @@
               accent-color,
               weight: "thin",
             )[#author.firstname]#text(weight: "bold")[#author.lastname]
+          ] else if language == "hu" [
+            #text(
+              accent-color,
+              weight: "thin",
+            )#text(weight: "bold")[#author.lastname][#author.firstname]
           ] else [
             #text(accent-color, weight: "thin")[#author.firstname]
             #text(weight: "bold")[#author.lastname]
@@ -669,6 +678,11 @@
               accent-color,
               weight: "thin",
             )[#author.firstname]#text(weight: "bold")[#author.lastname]
+          ]  else if language == "hu" [
+            #text(
+              accent-color,
+              weight: "thin",
+            )#text(weight: "bold")[#author.lastname][#author.firstname]
           ] else [
             #text(accent-color, weight: "thin")[#author.firstname]
             #text(weight: "bold")[#author.lastname]
